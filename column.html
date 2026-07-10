@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>column ― 亜細亜逍遥</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;800&family=Zen+Antique&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-paper: #f5eddb;
+    --color-paper-deep: #ecdfc0;
+    --color-paper-line: #d9c9a0;
+    --color-ink: #201a12;
+    --color-ink-soft: #59503f;
+    --color-seal: #ff4000;
+    --color-seal-deep: #c22e00;
+    --color-jade: #b1fc65;
+    --color-jade-deep: #6f9e3c;
+    --color-gold: #a9822f;
+    --font-display: "Shippori Mincho B1", serif;
+    --font-body: "Noto Sans JP", sans-serif;
+    --font-label: "Zen Antique", serif;
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--color-paper);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(169,130,47,0.08), transparent 45%),
+      radial-gradient(circle at 85% 92%, rgba(255,64,0,0.05), transparent 40%);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header / Nav ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(245,237,219,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-paper-line);
+  }
+
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 28px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color: var(--color-ink);
+  }
+
+  .brand-mark{ width: 34px; height: 34px; flex-shrink:0; }
+
+  .brand-text{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+  }
+
+  nav.links{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-family: var(--font-label);
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+
+  nav.links a{
+    text-decoration:none;
+    position:relative;
+    padding-bottom:4px;
+    color: var(--color-ink-soft);
+    transition: color .2s ease;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; right:100%;
+    bottom:0;
+    height:2px;
+    background: var(--color-seal);
+    transition: right .25s ease;
+  }
+  nav.links a:hover{ color: var(--color-ink); }
+  nav.links a:hover::after{ right:0; }
+  nav.links a.current{ color: var(--color-seal-deep); }
+
+  /* ---------- Page header ---------- */
+  .page-head{ padding: 64px 0 40px; }
+
+  .eyebrow{
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    color: var(--color-seal-deep);
+    text-transform: uppercase;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 26px;
+    height: 1px;
+    background: var(--color-seal);
+    display:inline-block;
+  }
+
+  .page-head h1{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .page-head p{
+    color: var(--color-ink-soft);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  /* ---------- Column list ---------- */
+  .column-list{ padding: 10px 0 90px; }
+
+  .list-inner{ border-top: 1px solid var(--color-paper-line); }
+
+  .col-entry{
+    display:block;
+    text-decoration:none;
+    color: var(--color-ink);
+    padding: 32px 0;
+    border-bottom: 1px solid var(--color-paper-line);
+    position: relative;
+  }
+
+  .col-entry-inner{
+    display:grid;
+    grid-template-columns: 150px 1fr auto;
+    gap: 28px;
+    align-items:start;
+  }
+
+  .col-entry time{
+    font-family: var(--font-label);
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+    padding-top: 4px;
+  }
+
+  .col-entry .body h2{
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    transition: color .2s ease;
+  }
+
+  .col-entry:hover .body h2{ color: var(--color-seal-deep); }
+
+  .col-entry .tag{
+    display:inline-block;
+    font-family: var(--font-label);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--color-jade-deep);
+    background: rgba(177,252,101,0.28);
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+
+  .col-entry p.excerpt{
+    color: var(--color-ink-soft);
+    font-size: 0.94rem;
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .col-entry .arrow{
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+    padding-top: 4px;
+    white-space: nowrap;
+    display:flex;
+    align-items:center;
+    gap: 6px;
+    transition: gap .2s ease, color .2s ease;
+  }
+  .col-entry:hover .arrow{
+    gap: 10px;
+    color: var(--color-seal-deep);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: 46px 0 60px;
+    border-top: 1px solid var(--color-paper-line);
+  }
+
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand{
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+  }
+
+  .footer-notice{
+    max-width: 46ch;
+    font-size: 0.78rem;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 720px){
+    nav.links{ display:none; }
+    .col-entry-inner{
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .col-entry .arrow{ padding-top: 6px; }
+    .footer-grid{ flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="36" height="36" rx="2" fill="none" stroke="#ff4000" stroke-width="2"/>
+        <text x="20" y="27" text-anchor="middle" font-family="Shippori Mincho B1, serif" font-size="19" fill="#ff4000">亜</text>
+      </svg>
+      <span class="brand-text">亜細亜逍遥</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">index</a>
+      <a href="blog.html">blog</a>
+      <a href="column.html" class="current">column</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Essays</p>
+      <h1>column</h1>
+      <p>特定のテーマを掘り下げて考察する読み物です。タイトルをクリックすると各コラムのページへ移動します。</p>
+    </div>
+  </section>
+
+  <section class="column-list">
+    <div class="wrap">
+      <div class="list-inner">
+
+        <a href="column-entry-01.html" class="col-entry">
+          <div class="col-entry-inner">
+            <time datetime="2026-07-10">2026.07.10</time>
+            <div class="body">
+              <span class="tag">TRADE ROUTE</span>
+              <h2>ここにコラムのタイトルが入ります</h2>
+              <p class="excerpt">
+                このブロックをコピーして新しいコラムを追加してください。excerptには本文の冒頭や概要を短く書きます。
+              </p>
+            </div>
+            <span class="arrow">読む →</span>
+          </div>
+        </a>
+
+        <a href="column-entry-01.html" class="col-entry">
+          <div class="col-entry-inner">
+            <time datetime="2026-06-20">2026.06.20</time>
+            <div class="body">
+              <span class="tag">DYNASTY</span>
+              <h2>サンプルのコラムタイトル</h2>
+              <p class="excerpt">
+                リンク先は同じサンプルページ(column-entry-01.html)を指定しています。新しい記事を作ったらファイル名を変えてリンクしてください。
+              </p>
+            </div>
+            <span class="arrow">読む →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <span class="footer-brand">亜細亜逍遥</span>
+    <p class="footer-notice">
+      本サイトのコンテンツは全て人間の手により作成されています。生成AIの学習データとしての使用は禁止します。<br>
+      This site's content is created by a human author. Use for AI training purposes is not permitted.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
