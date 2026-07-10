@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>blog ― 亜細亜逍遥</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;800&family=Zen+Antique&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-paper: #f5eddb;
+    --color-paper-deep: #ecdfc0;
+    --color-paper-line: #d9c9a0;
+    --color-ink: #201a12;
+    --color-ink-soft: #59503f;
+    --color-seal: #ff4000;
+    --color-seal-deep: #c22e00;
+    --color-jade: #b1fc65;
+    --color-jade-deep: #6f9e3c;
+    --color-gold: #a9822f;
+    --font-display: "Shippori Mincho B1", serif;
+    --font-body: "Noto Sans JP", sans-serif;
+    --font-label: "Zen Antique", serif;
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--color-paper);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(169,130,47,0.08), transparent 45%),
+      radial-gradient(circle at 85% 92%, rgba(255,64,0,0.05), transparent 40%);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header / Nav ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(245,237,219,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-paper-line);
+  }
+
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 28px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color: var(--color-ink);
+  }
+
+  .brand-mark{ width: 34px; height: 34px; flex-shrink:0; }
+
+  .brand-text{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+  }
+
+  nav.links{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-family: var(--font-label);
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+
+  nav.links a{
+    text-decoration:none;
+    position:relative;
+    padding-bottom:4px;
+    color: var(--color-ink-soft);
+    transition: color .2s ease;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; right:100%;
+    bottom:0;
+    height:2px;
+    background: var(--color-seal);
+    transition: right .25s ease;
+  }
+  nav.links a:hover{ color: var(--color-ink); }
+  nav.links a:hover::after{ right:0; }
+  nav.links a.current{ color: var(--color-seal-deep); }
+
+  /* ---------- Page header ---------- */
+  .page-head{
+    padding: 64px 0 40px;
+  }
+
+  .eyebrow{
+    font-family: var(--font-label);
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    color: var(--color-seal-deep);
+    text-transform: uppercase;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 26px;
+    height: 1px;
+    background: var(--color-seal);
+    display:inline-block;
+  }
+
+  .page-head h1{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .page-head p{
+    color: var(--color-ink-soft);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  /* ---------- Diary list ---------- */
+  .diary{
+    padding: 10px 0 90px;
+  }
+
+  .diary-list{
+    border-top: 1px solid var(--color-paper-line);
+  }
+
+  .entry{
+    display:grid;
+    grid-template-columns: 160px 1fr;
+    gap: 32px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--color-paper-line);
+  }
+
+  .entry time{
+    font-family: var(--font-label);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--color-seal-deep);
+    padding-top: 3px;
+  }
+
+  .entry time span{
+    display:block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+
+  .entry .text p{
+    margin: 0 0 14px;
+    color: var(--color-ink);
+  }
+  .entry .text p:last-child{ margin-bottom: 0; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: 46px 0 60px;
+    border-top: 1px solid var(--color-paper-line);
+  }
+
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand{
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-ink-soft);
+  }
+
+  .footer-notice{
+    max-width: 46ch;
+    font-size: 0.78rem;
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px){
+    nav.links{ display:none; }
+    .entry{ grid-template-columns: 1fr; gap: 8px; }
+    .entry time{ padding-top:0; }
+    .footer-grid{ flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="2" width="36" height="36" rx="2" fill="none" stroke="#ff4000" stroke-width="2"/>
+        <text x="20" y="27" text-anchor="middle" font-family="Shippori Mincho B1, serif" font-size="19" fill="#ff4000">亜</text>
+      </svg>
+      <span class="brand-text">亜細亜逍遥</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">index</a>
+      <a href="blog.html" class="current">blog</a>
+      <a href="column.html">column</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Diary</p>
+      <h1>blog</h1>
+      <p>調べたことや気づきを、日付だけ添えて短く綴っていく記録です。</p>
+    </div>
+  </section>
+
+  <section class="diary">
+    <div class="wrap">
+      <div class="diary-list">
+
+        <article class="entry">
+          <time datetime="2026-07-10">2026.07.10<span>金</span></time>
+          <div class="text">
+            <p>
+              ここに日記の本文が入ります。この一つのarticleブロックをコピーして、上に新しい記事を追加していってください。
+            </p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <time datetime="2026-07-03">2026.07.03<span>金</span></time>
+          <div class="text">
+            <p>
+              サンプルの記事です。段落を複数に分けたいときは、pタグを追加してください。
+            </p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <time datetime="2026-06-28">2026.06.28<span>日</span></time>
+          <div class="text">
+            <p>
+              一番古い記事は一番下になるようにしています。新しい記事ほど上に追加してください。
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <span class="footer-brand">亜細亜逍遥</span>
+    <p class="footer-notice">
+      本サイトのコンテンツは全て人間の手により作成されています。生成AIの学習データとしての使用は禁止します。<br>
+      This site's content is created by a human author. Use for AI training purposes is not permitted.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
